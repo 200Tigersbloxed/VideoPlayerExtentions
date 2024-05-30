@@ -4,7 +4,7 @@ namespace VideoPlayerExtensions;
 
 internal static class Config
 {
-    private const int CONFIG_VERSION = 1;
+    private const int CONFIG_VERSION = 2;
     
     public static bool ForceDirect => forceDirect.Value;
     public static bool DyanmicLibVLC => dynamicLibVLC.Value;
@@ -14,7 +14,7 @@ internal static class Config
     private static readonly string[] defaultVLCProtocols = {"rtmp", "rtsp", "srt", "udp", "tcp"};
     private static readonly string[] defaultVLCFiles = {".m3u8", ".flv"};
     
-    private static MelonPreferences_Category preferencesCategory = MelonPreferences.CreateCategory(MainMod.MOD_NAME + " Settings");
+    internal static MelonPreferences_Category preferencesCategory = MelonPreferences.CreateCategory(MainMod.MOD_NAME + " Settings");
     internal static MelonPreferences_Entry<bool> forceDirect;
     internal static MelonPreferences_Entry<bool> dynamicLibVLC;
     private static MelonPreferences_Entry<string[]> vlcProtocols;
@@ -23,11 +23,15 @@ internal static class Config
 
     static Config()
     {
-        forceDirect = preferencesCategory.CreateEntry("forceDirect", false);
-        dynamicLibVLC = preferencesCategory.CreateEntry("dynamicLibVLC", true);
-        vlcProtocols = preferencesCategory.CreateEntry("VLCProtocols", defaultVLCProtocols);
-        vlcFiles = preferencesCategory.CreateEntry("VLCFiles", defaultVLCFiles);
-        configVersion = preferencesCategory.CreateEntry("ConfigVersion", CONFIG_VERSION);
+        forceDirect = preferencesCategory.CreateEntry("forceDirect", false, "Force Direct",
+            "Switches Audio on Video Players to Direct");
+        dynamicLibVLC = preferencesCategory.CreateEntry("dynamicLibVLC", true, "Dynamic LibVLC",
+            "Switches VideoPlayer to LibVLC if media cannot be played on AVPro");
+        vlcProtocols = preferencesCategory.CreateEntry("VLCProtocols", defaultVLCProtocols,
+            description: "Set the stream protocols that will activate VLC");
+        vlcFiles = preferencesCategory.CreateEntry("VLCFiles", defaultVLCFiles,
+            description: "Set the file types that will activate VLC");
+        configVersion = preferencesCategory.CreateEntry("ConfigVersion", CONFIG_VERSION, description: "DO NOT CHANGE!");
         if (configVersion.Value == CONFIG_VERSION) return;
         vlcProtocols.Value = defaultVLCProtocols;
         vlcFiles.Value = defaultVLCFiles;
