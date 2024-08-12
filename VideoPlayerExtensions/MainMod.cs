@@ -21,7 +21,7 @@ namespace VideoPlayerExtensions;
 public class MainMod : MelonMod
 {
     internal const string MOD_NAME = "VideoPlayerExtensions";
-    internal const string MOD_VERSION = "1.1.1";
+    internal const string MOD_VERSION = "1.1.2";
     internal const string MOD_AUTHOR = "200Tigersbloxed";
     
     private static Type playerType = typeof(CVRVideoPlayer);
