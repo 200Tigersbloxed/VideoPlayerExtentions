@@ -21,7 +21,7 @@ namespace VideoPlayerExtensions;
 public class MainMod : MelonMod
 {
     internal const string MOD_NAME = "VideoPlayerExtensions";
-    internal const string MOD_VERSION = "1.1.2";
+    internal const string MOD_VERSION = "1.1.3";
     internal const string MOD_AUTHOR = "200Tigersbloxed";
     
     private static Type playerType = typeof(CVRVideoPlayer);
@@ -42,11 +42,11 @@ public class MainMod : MelonMod
         }
     }
     
-    [HarmonyPatch(typeof(CVRVideoPlayer), nameof(CVRVideoPlayer.SetVideoUrl), new Type[5]{typeof(string), typeof(bool), typeof(string), typeof(string), typeof(bool)})]
+    [HarmonyPatch(typeof(CVRVideoPlayer), nameof(CVRVideoPlayer.SetVideoUrl), new Type[6]{typeof(string), typeof(bool), typeof(string), typeof(string), typeof(bool), typeof(bool)})]
     private class VideoPlayerSetUrlPatch
     {
         static void Prefix(ref CVRVideoPlayer __instance, string url, bool broadcast = true, string objPath = "",
-            string username = null, bool isPaused = false)
+            string username = null, bool isPaused = false, bool fromNetwork = false)
         {
             if(Config.DyanmicLibVLC)
             {
