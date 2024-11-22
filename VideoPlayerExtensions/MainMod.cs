@@ -21,7 +21,7 @@ namespace VideoPlayerExtensions;
 public class MainMod : MelonMod
 {
     internal const string MOD_NAME = "VideoPlayerExtensions";
-    internal const string MOD_VERSION = "1.1.3";
+    internal const string MOD_VERSION = "1.1.4";
     internal const string MOD_AUTHOR = "200Tigersbloxed";
     
     private static Type playerType = typeof(CVRVideoPlayer);
@@ -63,6 +63,7 @@ public class MainMod : MelonMod
 
                     if (!useVlc)
                     {
+                        if (Config.ForceVLCWithYouTube && GetDomain(uri) == "youtube.com") useVlc = true;
                         string destFile = uri.Segments[uri.Segments.Length - 1];
                         string extension = Path.GetExtension(destFile);
                         foreach (string vlcFile in Config.VLCFiles)
@@ -131,6 +132,15 @@ public class MainMod : MelonMod
                     }
                 }
             }
+        }
+
+        private static string GetDomain(Uri uri)
+        {
+            string host = uri.Host;
+            string[] parts = host.Split('.');
+            if (parts.Length >= 2)
+                return string.Join(".", parts[parts.Length - 2], parts[parts.Length - 1]);
+            return host;
         }
     }
 }

@@ -51,6 +51,9 @@ internal class OptionalUI
         CreateToggle(Config.dynamicLibVLC, categoryType, toggleType,
             new object[3]
                 {Config.dynamicLibVLC.DisplayName, Config.dynamicLibVLC.Description, Config.dynamicLibVLC.Value});
+        CreateToggle(Config.forceVLCWithYouTube, categoryType, toggleType,
+            new object[3]
+                {Config.forceVLCWithYouTube.DisplayName, Config.forceVLCWithYouTube.Description, Config.forceVLCWithYouTube.Value});
     }
 
     private static void CreateToggle(MelonPreferences_Entry<bool> p, Type categoryType, Type toggleType, object[] pa)

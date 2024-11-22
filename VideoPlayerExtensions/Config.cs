@@ -8,6 +8,7 @@ internal static class Config
     
     public static bool ForceDirect => forceDirect.Value;
     public static bool DyanmicLibVLC => dynamicLibVLC.Value;
+    public static bool ForceVLCWithYouTube => forceVLCWithYouTube.Value;
     public static string[] VLCProtocols => vlcProtocols.Value;
     public static string[] VLCFiles => vlcFiles.Value;
 
@@ -17,6 +18,7 @@ internal static class Config
     internal static MelonPreferences_Category preferencesCategory = MelonPreferences.CreateCategory(MainMod.MOD_NAME + " Settings");
     internal static MelonPreferences_Entry<bool> forceDirect;
     internal static MelonPreferences_Entry<bool> dynamicLibVLC;
+    internal static MelonPreferences_Entry<bool> forceVLCWithYouTube;
     private static MelonPreferences_Entry<string[]> vlcProtocols;
     private static MelonPreferences_Entry<string[]> vlcFiles;
     private static MelonPreferences_Entry<int> configVersion;
@@ -27,6 +29,8 @@ internal static class Config
             "Switches Audio on Video Players to Direct");
         dynamicLibVLC = preferencesCategory.CreateEntry("dynamicLibVLC", true, "Dynamic LibVLC",
             "Switches VideoPlayer to LibVLC if media cannot be played on AVPro");
+        forceVLCWithYouTube = preferencesCategory.CreateEntry("forceVLCWithYouTube", true, "Force VLC with YouTube",
+            "Forces VLC to be used with all YouTube links (Requires DynamicLibVLC)");
         vlcProtocols = preferencesCategory.CreateEntry("VLCProtocols", defaultVLCProtocols,
             description: "Set the stream protocols that will activate VLC");
         vlcFiles = preferencesCategory.CreateEntry("VLCFiles", defaultVLCFiles,
