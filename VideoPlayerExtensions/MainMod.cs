@@ -9,7 +9,7 @@ using MelonLoader;
 using VideoPlayerExtensions;
 
 [assembly: MelonInfo(typeof(MainMod), MainMod.MOD_NAME, MainMod.MOD_VERSION, MainMod.MOD_AUTHOR)]
-[assembly: MelonGame("Alpha Blend Interactive", "ChilloutVR")]
+[assembly: MelonGame("ChilloutVR", "ChilloutVR")]
 [assembly: MelonOptionalDependencies("BTKUILib")]
 [assembly: MelonAuthorColor(255, 252, 100, 0)]
 [assembly: AssemblyVersion(MainMod.MOD_VERSION)]
@@ -21,7 +21,7 @@ namespace VideoPlayerExtensions;
 public class MainMod : MelonMod
 {
     internal const string MOD_NAME = "VideoPlayerExtensions";
-    internal const string MOD_VERSION = "1.1.4";
+    internal const string MOD_VERSION = "1.1.5";
     internal const string MOD_AUTHOR = "200Tigersbloxed";
     
     private static Type playerType = typeof(CVRVideoPlayer);
